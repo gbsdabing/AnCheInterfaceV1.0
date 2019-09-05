@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace AnCheUpload_V3._1
 {
@@ -24,11 +25,21 @@ namespace AnCheUpload_V3._1
 
         private bool StartUploadData()
         {
-            Thread UploadThread = new Thread(new ParameterizedThreadStart(UploadTestData));//新建一个过程的上传线程
-            AsmUploadThread.Start(dt_jczt);//开始上传线程
-            carinfodb.UpdateCarTestStatusYCLZT(tempZT, jylsh, jycs);//临时更新已处理状态到当前状态
-            update_dt_data(DgvModel.UploadTestData, dt_jczt.Rows[0], "备注", "ASM数据自动上传中...");
-            FileOpreate.SaveLog("jylsh:" + jylsh + "|ASM数据自动上传线程已开始", "检测数据上传", 1);
+            try
+            {
+                //Thread UploadThread = new Thread(new ParameterizedThreadStart(UploadTestData));//新建一个过程的上传线程
+                //UploadThread.Start(dt_jczt);//开始上传线程
+                //carinfodb.UpdateCarTestStatusYCLZT(tempZT, jylsh, jycs);//临时更新已处理状态到当前状态
+                //update_dt_data(DgvModel.UploadTestData, dt_jczt.Rows[0], "备注", "ASM数据自动上传中...");
+                //FileOpreate.SaveLog("jylsh:" + jylsh + "|ASM数据自动上传线程已开始", "检测数据上传", 1);
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         private void UploadTestData(object obj)
         {
